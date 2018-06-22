@@ -59,24 +59,24 @@ class FR_GUI:
         passwd = self.user_pass.get()
         uri = 'https://api.flowroute.com/v2/e911s'
 
-        r = requests.get(uri, auth=(user,passwd))
+        r = requests.get(uri, auth=(user,passwd), params={'limit':200})
 
         return r.content
 
     def write_file(self, data):
 
-        fields = ['label','last_name','first_name','street_number','street_name','address_type','address_type_number','city','state','country','zip']
+        fields = ["label","last_name","first_name","street_number","street_name","address_type","address_type_number","city","state","country","zip"]
 
         f = open(self.output_file.get(), 'w')
-        f.write("'ID'" + ',')
+        f.write('"ID"' + ',')
         for field in fields:
             f.write(field.replace("_", " ").title() + ',')
         f.write('\n')
 
         for line in data['data']:
-            f.write("'" + line['id'] + "',")
+            f.write('"' + line['id'] + '",')
             for field in fields:
-                f.write("'" + line['attributes'][field] + "',")
+                f.write('"' + line['attributes'][field] + '",')
             f.write('\n')
         f.close()
 
