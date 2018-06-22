@@ -65,7 +65,7 @@ export FR_CSV_OUTPUT=/path/to/e911.csv
 Source the file as follows:
 `. fr_env.sh`
 
-Then run json2csv.py as shown above. With your credentials auto-populated like shown in the screenshot below, click Write CSV to write the file to the path that you specified. 
+Then run json2csv.py as shown above. With your credentials auto-populated like shown in the screenshot below, click *Write CSV* to write the file to the path that you specified. 
 
 ![python-e911-csv.png](https://github.com/flowroute/e911-json-to-csv/blob/master/images/python-e911-csv.png?raw=true)
 
