@@ -16,7 +16,7 @@ Requirements
 ------------
 
 *   Flowroute [API credentials](https://manage.flowroute.com/accounts/preferences/api/)
-*   [Python](https://www.python.org/downloads/): `Python 2 >=2.7.9`
+*   [Python 2.7.0](https://www.python.org/download/releases/2.7/)
 
 * * *
 Installation
