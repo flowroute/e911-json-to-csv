@@ -67,6 +67,6 @@ Source the file as follows:
 
 Then run json2csv.py as shown above. With your credentials auto-populated like shown in the screenshot below, click Write CSV to write the file to the path that you specified. 
 
-![python-e911-csv.png](https://github.com/flowroute/e911-to-csv/blob/master/images/python-3911-csv.png?raw=true)
+![python-e911-csv.png](https://github.com/flowroute/e911-json-to-csv/blob/master/images/python-e911-csv.png?raw=true)
 
 To review the CSV file that has been downloaded to the path that you specified, open the file. That's it! Start doing your data magic. 
