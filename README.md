@@ -144,9 +144,10 @@ Run the Docker container, passing along the environment variables and sharing th
 
 ```bash
 run -it -e DISPLAY=<your_computer_IP>:0 -e FR_ACCESS_KEY=$FR_ACCESS_KEY -e FR_SECRET_KEY=$FR_SECRET_KEY -e FR_CSV_OUTPUT=$FR_CSV_OUTPUT  -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/app/out/ <docker_id>
-
-Example Usage:
 ```
+#####Example Usage
+```bash
 run -it -e DISPLAY=192.168.2.161:0 -e FR_USERNAME=$FR_USERNAME -e FR_PASSWD=$FR_PASSWD -e FR_OUTFILE=$FR_OUTFILE  -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/app/out/ 3b208f0feeb5
 Marias-MacBook-Pro:e911-json-to-csv mbermudez$ docker run -it -e DISPLAY=192.168.2.161:0 -e FR_ACCESS_KEY=$FR_ACCESS_KEY -e FR_SECRET_KEY=$FR_SECRET_KEY -e FR_CSV_OUTPUT=$FR_CSV_OUTPUT  -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/app/out/ 31a46a53fe41
+```
 ```
