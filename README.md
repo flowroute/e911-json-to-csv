@@ -1,12 +1,14 @@
 # e911-json-to-csv
 
-## WIP Dockerized JSON to CSV Python App with a GUI
+## Dockerized JSON to CSV Python App with a GUI
 
 **Topics**
 
 *   [Requirements](#requirements)
 *   [Installation](#installation)
 *   [Usage](#usage)
+   * [Run the app locally] (#run-the-app-locally)
+   * [Run the app with Docker] (#run-the-app-with-docker)
 
 Download all E911 records from your account and write them to a CSV using this Python GUI app. This E911 JSON to CSV app runs on Python 2.7 and leverages the classic Tkinter module for the GUI that you will be interacting with. It has been tested on `Ubuntu 16.04` and `macOS High Sierra 10.13.4`. 
 
