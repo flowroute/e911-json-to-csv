@@ -9,6 +9,9 @@ import tkMessageBox
 
 class FR_GUI:
     def __init__(self, master):
+        userdefault = ''
+        passdefault = ''
+        filedefault = 'output.csv'
 
         if os.getenv('FR_ACCESS_KEY') != '':
             userdefault = StringVar(master, value=os.getenv('FR_ACCESS_KEY'))
