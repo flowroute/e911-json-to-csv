@@ -16,8 +16,9 @@ Requirements
 ------------
 
 *   Flowroute [API credentials](https://manage.flowroute.com/accounts/preferences/api/)
-*   [Python 2.7.0](https://www.python.org/download/releases/2.7/)
+*   [Python 2.7.0](https://www.python.org/download/releases/2.7/)[1]
 
+[1] Skip Installation and go straight to "Run the app with Docker" if you want to run the Dockerized version of this app.
 * * *
 Installation
 ------------
@@ -70,3 +71,82 @@ Then run json2csv.py as shown above. With your credentials auto-populated like s
 ![python-e911-csv.png](https://github.com/flowroute/e911-json-to-csv/blob/master/images/python-e911-csv.png?raw=true)
 
 To review the CSV file that has been downloaded to the path that you specified, open the file. That's it! Start doing your data magic. 
+
+
+### Run the app with Docker
+
+When running this app using Docker, you will have to install XQuartz. Of course, if you haven't downloaded Docker on your machine yet, see https://docs.docker.com/install/.
+
+#### Install XQuartz
+
+```bash
+brew cask install xquartz
+```
+
+#### Turn on X11 Forwarding and allow connections from network clients
+Make sure the remote ssh server supports X11. Add the following line to the `etc/ssh/sshd_config` file.
+
+```bash
+X11Forwarding yes
+```
+Open up XQuartz and update *Xquartz > Preferences > Security*. Check "Allow connections from network clients".
+
+#### Set the DISPLAY variable 
+Xquartz provides a telnet app which automatically has the DISPLAY variable already set. If you are using iTerm2 like me , you will have to manually declare the variable.
+
+```bash
+export DISPLAY=:0
+```
+
+To confirm, run the following:
+```bash
+echo $DISPLAY
+```
+#### Disable access control
+The xhost program is used to add and delete host names or user names to the list allowed to make connections to the X server. Read more about it here: https://www.x.org/archive/X11R6.8.1/doc/xhost.1.html
+
+```bash
+xhost +
+```
+
+#### Log in to remote host
+For this demo, you can use your machine's IP as your hostname. 
+```bash
+ssh -X <your_computer_IP>
+```
+#### Build your Docker image
+Once you're logged in, switch to the directory that contains your Dockerfile. In this case, it will be the local path for this repo:
+```bash
+cd path/to/e911-json-to-csv
+```
+Build your Docker image to install the app dependencies. Make a note of the resulting image ID.
+
+```bash
+docker build .
+```
+
+#### Set and source environment variables
+
+To learn more about setting environment variables, see [How To Read and Set Environmental and Shell Variables](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps). In a pinch, you can create an `fr_env.sh` file in the same directory and add the following lines:
+
+```bash
+export FR_ACCESS_KEY=<YOUR_FR_ACCESS_KEY>
+export FR_SECRET_KEY=<YOUR_FR_SECRET_KEY>
+export FR_CSV_OUTPUT=/path/to/e911.csv
+```
+
+Source the file as follows:
+`. fr_env.sh`
+
+
+#### Run your Docker container
+Run the Docker container, passing along the environment variables and sharing the volumes.
+
+```bash
+run -it -e DISPLAY=<your_computer_IP>:0 -e FR_ACCESS_KEY=$FR_ACCESS_KEY -e FR_SECRET_KEY=$FR_SECRET_KEY -e FR_CSV_OUTPUT=$FR_CSV_OUTPUT  -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/app/out/ <docker_id>
+
+Example Usage:
+```
+run -it -e DISPLAY=192.168.2.161:0 -e FR_USERNAME=$FR_USERNAME -e FR_PASSWD=$FR_PASSWD -e FR_OUTFILE=$FR_OUTFILE  -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/app/out/ 3b208f0feeb5
+Marias-MacBook-Pro:e911-json-to-csv mbermudez$ docker run -it -e DISPLAY=192.168.2.161:0 -e FR_ACCESS_KEY=$FR_ACCESS_KEY -e FR_SECRET_KEY=$FR_SECRET_KEY -e FR_CSV_OUTPUT=$FR_CSV_OUTPUT  -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/app/out/ 31a46a53fe41
+```
