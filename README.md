@@ -17,8 +17,11 @@ Download all E911 records from your account and write them to a CSV using this P
 Requirements
 ------------
 
+* An activated <a href="https://manage.flowroute.com/" target="_blank" >Flowroute account</a>
 *   Flowroute [API credentials](https://manage.flowroute.com/accounts/preferences/api/)
 *   [Python 2.7.0](https://www.python.org/download/releases/2.7/)[1]
+* <a href="https://docker.com">Docker</a> installed and running on your machine
+
 
 [1] Skip Installation and go straight to "Run the app with Docker" if you want to run the Dockerized version of this app.
 * * *
