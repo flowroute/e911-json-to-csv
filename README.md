@@ -24,6 +24,7 @@ Requirements
 
 
 [1] Skip Installation and go straight to "Run the app with Docker" if you want to run the Dockerized version of this app.
+
 [2] You do not need to worry about the correct Python version if you are running the Dockerized version of this app. 
 * * *
 Installation
@@ -32,7 +33,7 @@ Installation
 1. First, start a shell session and clone the Python GUI app:
     * via HTTPS: `git clone https://github.com/flowroute/e911-json-to-csv.git`
 
-    * via SSH: `git@github.com:flowroute/e911-json-to-csv.git`
+    * via SSH: `git clone git@github.com:flowroute/e911-json-to-csv.git`
 
 2. Switch to the newly-created `e911-json-to-csv` directory. 
 
